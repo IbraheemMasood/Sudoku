@@ -1,16 +1,17 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.plaf.basic.DefaultMenuLayout;
 import java.lang.Math;
 
 /**
  * Generates the main game boards GUI as
  * well as the win-screen
-  */
+ */
 
 public class SudokuGUI extends JFrame {
-
     public static JLayeredPane sudBoard = new JLayeredPane();
     public static Tile[][] buttonArray = new Tile[9][9];
+    public static NumButton[][] keyArray = new NumButton[9][9];
 
     /**
      * Helper function to generate a win-screen
@@ -30,6 +31,7 @@ public class SudokuGUI extends JFrame {
 
     /**
      * Generates sudoku GUI
+     *
      * @param size unnecessary for now, allows for potential scaling in the future
      */
     public SudokuGUI(int size) {
@@ -39,7 +41,29 @@ public class SudokuGUI extends JFrame {
         //sets game-board layout and default size
         sudBoard.setLayout(new GridLayout((int) Math.sqrt(size), (int) Math.sqrt(size)));
         sudBoard.setPreferredSize(new Dimension(Tile.SIZE * size, Tile.SIZE * size));
+        //Iterator, used to set number for individual keys
+        int numSet = 1;
 
+        //Generates Keypad
+
+        JPanel keyPad = new JPanel();
+        keyPad.setLayout(new GridLayout(3, 3));
+        keyPad.setPreferredSize(new Dimension(400, 400));
+
+
+
+        //Adds buttons to keypad
+        for (int padRow = 0; padRow < 3; padRow++) {
+            for (int padCol = 0; padCol < 3; padCol++) {
+                NumButton.value = numSet;
+                NumButton number = new NumButton();
+                keyPad.add(number);
+                numSet++;
+                keyArray[padRow][padCol] = number;
+
+            }
+
+        }
         //generates buttons
         for (int row = 0; row < (int) Math.sqrt(size); row++) {
 
@@ -58,17 +82,19 @@ public class SudokuGUI extends JFrame {
 
                     //Adds buttons, sets their value
                     for (int innerCol = 0; innerCol < (int) Math.sqrt(size); innerCol++) {
-                        Tile tile = new Tile();
                         Tile.value = Main.sudNumbers[col * 3 + innerCol][row * 3 + innerRow];
                         Tile.visible = Main.sudIsSolved[col * 3 + innerCol][row * 3 + innerRow];
+                        Tile tile = new Tile();
                         sudBox.add(tile);
                         buttonArray[col * 3 + innerCol][row * 3 + innerRow] = tile;
                     }
 
                 }
 
+                setLayout(new GridLayout(1,2,10,0));
                 sudBoard.add(sudBox);
                 add(sudBoard);
+                add(keyPad);
                 pack();
                 setVisible(true);
 
@@ -80,5 +106,6 @@ public class SudokuGUI extends JFrame {
     }
 
 }
+
 
 

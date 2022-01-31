@@ -14,33 +14,32 @@ public class Main {
     static boolean[][] sudIsSolved = {{false, false, false, true, true, true, false, false, false}, {true, true, false, true, true, true, false, false, true}, {true, false, true, false, false, false, true, false, false}, {false, false, true, false, true, false, false, true, false}, {true, false, true, false, true, true, false, true, false}, {true, false, false, false, true, true, true, false, false}, {false, true, false, true, false, true, false, true, false}, {false, false, true, false, true, true, false, false, true}, {false, false, false, false, true, true, false, true, true}};
     static int currentNum = 0;//Tracks users current number
 
-/**
- *Runs helper commands to create a sudoku board
- * */
+    /**
+     * Runs helper commands to create a sudoku board
+     */
     public static void main(String[] args) {
 
 // I was unsure if Ms.Stusiak wanted us to keep this past step 1, left in just in case
-//        for (int i = 0; i <= sudNumbers.length - 1; i++) {
-//            for (int j = 0; j <= sudNumbers.length - 1; j++) {
-//                if (sudIsSolved[j][i]) {
-//                    System.out.print(" " + sudNumbers[j][i] + " ");
-//                } else {
-//                    System.out.print(" - ");
-//                }
-//
-//            }
-//            System.out.println();
-//
-//        }
+        for (int i = 0; i <= sudNumbers.length - 1; i++) {
+            for (int j = 0; j <= sudNumbers.length - 1; j++) {
+                //if (sudIsSolved[j][i]) {
+                    System.out.print(" " + sudNumbers[j][i] + " ");
+                //} else {
+              //      System.out.print(" - ");
+              //  }
+
+            }
+            System.out.println();
+
+        }
         //Starts up keypad and game-board
         new SudokuGUI(9);
-        new KeyPadGUI();
 
     }
 
-   /**
-    * Checks if the game is won
-    * */
+    /**
+     * Checks if the game is won
+     */
     public static boolean isWon() {
 
         for (int row = 0; row < sudNumbers.length; row++) {

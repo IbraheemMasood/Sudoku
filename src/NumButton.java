@@ -2,15 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 
 import static java.awt.Color.*;
+
 /**
- *The buttons used on the number-pad
+ * The buttons used on the number-pad
  */
 public class NumButton extends JButton {
     static int value = 0;
 
     public NumButton() {
         //Num Button Style
-        super(String.valueOf(value));
+        setText(String.valueOf(value));
         setBorder(BorderFactory.createLineBorder(BLACK));
         setMargin(new Insets(0, 0, 0, 0));
         setBackground(darkGray);

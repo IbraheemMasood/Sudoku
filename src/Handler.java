@@ -22,10 +22,9 @@ public class Handler implements ActionListener {
 
         } else {
             Tile tile = (Tile) e.getSource(); //Checks what button was clicked
-            if (!Tile.visible && Main.currentNum != 0) {
+            if (!tile.isShown && Main.currentNum != 0) {
                 tile.setText(String.valueOf(Main.currentNum));
                 tile.showing = Main.currentNum;
-                Main.currentNum = 0;
                 tile.setForeground(new Color(7, 0, 120));
             }
 
