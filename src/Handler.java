@@ -25,28 +25,42 @@ public class Handler implements ActionListener {
             if (!tile.isShown && Main.currentNum != 0) {
                 tile.setText(String.valueOf(Main.currentNum));
                 tile.showing = Main.currentNum;
-                tile.setForeground(new Color(7, 0, 120));
+                tile.setForeground(new Color(11, 0, 80));
             }
 
             //Checks if game is won
             if (Main.isWon()) {
 
-                //Gets image from webhost
-                URL imgURL = null;
+                //Gets left image from web-host
+                URL imgURLL = null;
                 try {
-                    imgURL = new URL("https://i.imgur.com/gFaGrll.png");
+                    imgURLL = new URL("https://i.imgur.com/GH6u1OE.png");
                 } catch (MalformedURLException ex) {
+                    System.out.println("The image url has expired, please email Ibraheemmasood10@gmail.com and tell him");
+                }
+                BufferedImage winImageL = null;
+                try {
+                    winImageL = ImageIO.read(imgURLL);
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                BufferedImage winImage = null;
+                //Gets right image from web-host
+                URL imgURLR = null;
                 try {
-                    winImage = ImageIO.read(imgURL);
+                    imgURLR = new URL("https://i.imgur.com/Uc4slMU.png");
+                } catch (MalformedURLException ex) {
+                    System.out.println("The image url has expired, please email Ibraheemmasood10@gmail.com and tell him");
+                }
+                BufferedImage winImageR = null;
+                try {
+                    winImageR = ImageIO.read(imgURLR);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
 
                 //Creates JLabel with image
-                JLabel winComponent = new JLabel(new ImageIcon(winImage));
+                JLabel winComponent1 = new JLabel(new ImageIcon(winImageL));
+                JLabel winComponent2 = new JLabel(new ImageIcon(winImageR));
 
                 //Win-screen animation
                 for (int i = 0; i <= 5; i++) {
@@ -55,6 +69,7 @@ public class Handler implements ActionListener {
                             tile = SudokuGUI.buttonArray[row][col];
                             Color background = new Color(250, 30 + col * 20, 30 + row * 20);
                             tile.setBackground(background);
+                            tile.setBorder(BorderFactory.createLineBorder(background));
                             //Force renders before sleep to allow for delay
                             tile.paintImmediately(1, 1, tile.getWidth(), tile.getHeight());
 
@@ -74,7 +89,7 @@ public class Handler implements ActionListener {
                     }
                 }
                 //Runs method to generate win-screen
-                SudokuGUI.WinScreen(winComponent);
+                SudokuGUI.WinScreen(winComponent1, winComponent2);
 
 
             }

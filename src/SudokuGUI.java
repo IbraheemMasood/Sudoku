@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.plaf.basic.DefaultMenuLayout;
 import java.lang.Math;
+
 
 /**
  * Generates the main game boards GUI as
@@ -9,23 +9,24 @@ import java.lang.Math;
  */
 
 public class SudokuGUI extends JFrame {
-    public static JLayeredPane sudBoard = new JLayeredPane();
+    public static JPanel sudBoard = new JPanel();
     public static Tile[][] buttonArray = new Tile[9][9];
     public static NumButton[][] keyArray = new NumButton[9][9];
+    public static JPanel keyPad = new JPanel();
 
     /**
      * Helper function to generate a win-screen
      * TODO add timer that shows time it took to win
      */
-    public static void WinScreen(JLabel component) {
-        JPanel winScreen = new JPanel();
-        winScreen.setSize(630, 630);
-        winScreen.add(component);
+    public static void WinScreen(JLabel component1, JLabel component2) {
+        Color winCol = new Color(255, 2, 80);
         sudBoard.removeAll();
-        sudBoard.setLayout(null);
-        sudBoard.add(winScreen);
-        sudBoard.setLayer(winScreen, 3, 0);
-        winScreen.setBackground(new Color(159, 18, 25));
+        keyPad.removeAll();
+        keyPad.setBorder(null);
+        keyPad.setBackground(winCol);
+        sudBoard.setBackground(winCol);
+        sudBoard.add(component1);
+        keyPad.add(component2);
 
     }
 
@@ -41,18 +42,19 @@ public class SudokuGUI extends JFrame {
         //sets game-board layout and default size
         sudBoard.setLayout(new GridLayout((int) Math.sqrt(size), (int) Math.sqrt(size)));
         sudBoard.setPreferredSize(new Dimension(Tile.SIZE * size, Tile.SIZE * size));
+
+
         //Iterator, used to set number for individual keys
         int numSet = 1;
 
         //Generates Keypad
 
-        JPanel keyPad = new JPanel();
+
         keyPad.setLayout(new GridLayout(3, 3));
-        keyPad.setPreferredSize(new Dimension(400, 400));
+        keyPad.setBorder(BorderFactory.createLineBorder(Color.darkGray, 50));
 
 
-
-        //Adds buttons to keypad
+        //Adds button to keypad
         for (int padRow = 0; padRow < 3; padRow++) {
             for (int padCol = 0; padCol < 3; padCol++) {
                 NumButton.value = numSet;
@@ -80,7 +82,7 @@ public class SudokuGUI extends JFrame {
                         Tile.color = Color.LIGHT_GRAY;
                     }
 
-                    //Adds buttons, sets their value
+                    //Adds button, sets its value
                     for (int innerCol = 0; innerCol < (int) Math.sqrt(size); innerCol++) {
                         Tile.value = Main.sudNumbers[col * 3 + innerCol][row * 3 + innerRow];
                         Tile.visible = Main.sudIsSolved[col * 3 + innerCol][row * 3 + innerRow];
@@ -91,7 +93,7 @@ public class SudokuGUI extends JFrame {
 
                 }
 
-                setLayout(new GridLayout(1,2,10,0));
+                setLayout(new GridLayout(1, 2, 0, 0));
                 sudBoard.add(sudBox);
                 add(sudBoard);
                 add(keyPad);

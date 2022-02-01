@@ -3,7 +3,7 @@
  * A simple one board Sudoku player, using JavaFX
  *
  * @author Ibraheem Masood
- * @version 1.0
+ * @version 1.1
  * @since 1/27/2022
  */
 
@@ -20,18 +20,18 @@ public class Main {
     public static void main(String[] args) {
 
 // I was unsure if Ms.Stusiak wanted us to keep this past step 1, left in just in case
-        for (int i = 0; i <= sudNumbers.length - 1; i++) {
-            for (int j = 0; j <= sudNumbers.length - 1; j++) {
-                //if (sudIsSolved[j][i]) {
-                    System.out.print(" " + sudNumbers[j][i] + " ");
-                //} else {
-              //      System.out.print(" - ");
-              //  }
-
-            }
-            System.out.println();
-
-        }
+//        for (int i = 0; i <= sudNumbers.length - 1; i++) {
+//            for (int j = 0; j <= sudNumbers.length - 1; j++) {
+        //if (sudIsSolved[j][i]) {
+//                    System.out.print(" " + sudNumbers[j][i] + " ");
+        //} else {
+        //      System.out.print(" - ");
+        //  }
+//
+//            }
+//            System.out.println();
+//
+//        }
         //Starts up keypad and game-board
         new SudokuGUI(9);
 
@@ -43,13 +43,13 @@ public class Main {
     public static boolean isWon() {
 
         for (int row = 0; row < sudNumbers.length; row++) {
-            for (int col = 0; col < sudNumbers.length; col++) {
-                if (sudNumbers[col][row] != SudokuGUI.buttonArray[col][row].showing && !SudokuGUI.buttonArray[col][row].isShown) {
+           for (int col = 0; col < sudNumbers.length; col++) {
+                  if (sudNumbers[col][row] != SudokuGUI.buttonArray[col][row].showing && !SudokuGUI.buttonArray[col][row].isShown) {
                     return false;
-                }
+                 }
 
 
-            }
+         }
 
 
         }

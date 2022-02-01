@@ -17,12 +17,11 @@ public class Tile extends JButton {
     public Tile() {
 
         setText(String.valueOf(value));//Shows value on button
-        setBorder(BorderFactory.createLineBorder(Color.black));
         //tile style
-        setMargin(new Insets(0, 0, 0, 0));
+        setBorder(BorderFactory.createLineBorder(Color.darkGray));
         setBackground(color);
         setForeground(Color.black);
-        setFont(new Font("Inter", Font.PLAIN, 25));
+        setFont(new Font("Inter", Font.PLAIN, 30));
 
         //Sets button to blank if value isn't shown
         if (!isShown) {
