@@ -12,20 +12,25 @@ import java.util.concurrent.TimeUnit;
 /**
  * Runs code depending on game state and user input
  */
+
+
 public class Handler implements ActionListener {
+    //Starts timer
+    public static long startTime = System.currentTimeMillis();
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        //stores the number you clicked from
+        //Stores the number you clicked from
         if (e.getSource() instanceof NumButton numpad) {
-            Main.currentNum = Integer.parseInt(numpad.getText());
+            Main.gameGUI.currentNum = Integer.parseInt(numpad.getText());
 
         } else {
             Tile tile = (Tile) e.getSource(); //Checks what button was clicked
-            if (!tile.isShown && Main.currentNum != 0) {
-                tile.setText(String.valueOf(Main.currentNum));
-                tile.showing = Main.currentNum;
-                tile.setForeground(new Color(11, 0, 80));
+            if (!tile.isShown && Main.gameGUI.currentNum != 0) {
+                tile.setText(String.valueOf(Main.gameGUI.currentNum));
+                tile.showing = Main.gameGUI.currentNum;
+                tile.setForeground(new Color(11, 0, 100));
             }
 
             //Checks if game is won
@@ -89,7 +94,10 @@ public class Handler implements ActionListener {
                     }
                 }
                 //Runs method to generate win-screen
-                SudokuGUI.WinScreen(winComponent1, winComponent2);
+                long endTime = System.currentTimeMillis();
+                String elapsedMin = String.valueOf(((endTime - startTime) / 1000) / 60);
+                String elapsedSec = String.valueOf(((endTime - startTime) / 1000) % 60);
+                Main.gameGUI.WinScreen(winComponent1, winComponent2, elapsedMin, elapsedSec);
 
 
             }

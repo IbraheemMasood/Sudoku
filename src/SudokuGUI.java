@@ -13,12 +13,12 @@ public class SudokuGUI extends JFrame {
     public static Tile[][] buttonArray = new Tile[9][9];
     public static NumButton[][] keyArray = new NumButton[9][9];
     public static JPanel keyPad = new JPanel();
+    int currentNum = 0;//Tracks users current number
 
     /**
      * Helper function to generate a win-screen
-     * TODO add timer that shows time it took to win
      */
-    public static void WinScreen(JLabel component1, JLabel component2) {
+    public void WinScreen(JLabel component1, JLabel component2, String min, String sec) {
         Color winCol = new Color(255, 2, 80);
         sudBoard.removeAll();
         keyPad.removeAll();
@@ -27,7 +27,7 @@ public class SudokuGUI extends JFrame {
         sudBoard.setBackground(winCol);
         sudBoard.add(component1);
         keyPad.add(component2);
-
+        setTitle("YOU WON IN " + min + " MINUTES AND " + sec + " SECONDS!");
     }
 
     /**
