@@ -15,7 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Handler implements ActionListener {
-    //Starts timer
+    /**
+     * Used to get time for win-screen
+     */
     public static long startTime = System.currentTimeMillis();
 
     @Override
@@ -45,6 +47,7 @@ public class Handler implements ActionListener {
                 }
                 BufferedImage winImageL = null;
                 try {
+                    assert imgURLL != null;
                     winImageL = ImageIO.read(imgURLL);
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -58,13 +61,16 @@ public class Handler implements ActionListener {
                 }
                 BufferedImage winImageR = null;
                 try {
+                    assert imgURLR != null;
                     winImageR = ImageIO.read(imgURLR);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
 
                 //Creates JLabel with image
+                assert winImageL != null;
                 JLabel winComponent1 = new JLabel(new ImageIcon(winImageL));
+                assert winImageR != null;
                 JLabel winComponent2 = new JLabel(new ImageIcon(winImageR));
 
                 //Win-screen animation
