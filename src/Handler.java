@@ -32,7 +32,7 @@ public class Handler implements ActionListener {
             if (!tile.isShown && Main.gameGUI.currentNum != 0) {
                 tile.setText(String.valueOf(Main.gameGUI.currentNum));
                 tile.showing = Main.gameGUI.currentNum;
-                tile.setForeground(new Color(11, 0, 100));
+                tile.setForeground(new Color(50, 30, 130));
             }
 
             //Checks if game is won

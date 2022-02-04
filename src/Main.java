@@ -4,7 +4,7 @@
  *
  * @author Ibraheem Masood
  * @version 1.2
- * @since 2/2/2022
+ * @since 2/3/2022
  */
 
 public class Main {
@@ -43,13 +43,13 @@ public class Main {
     public static boolean isWon() {
 
         for (int row = 0; row < sudNumbers.length; row++) {
-           for (int col = 0; col < sudNumbers.length; col++) {
-                  if (sudNumbers[col][row] != SudokuGUI.buttonArray[col][row].showing && !SudokuGUI.buttonArray[col][row].isShown) {
+            for (int col = 0; col < sudNumbers.length; col++) {
+                if (sudNumbers[col][row] != SudokuGUI.buttonArray[col][row].showing && !SudokuGUI.buttonArray[col][row].isShown) {
                     return false;
-                 }
+                }
 
 
-         }
+            }
 
 
         }

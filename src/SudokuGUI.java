@@ -48,10 +48,8 @@ public class SudokuGUI extends JFrame {
         int numSet = 1;
 
         //Generates Keypad
-
-
         keyPad.setLayout(new GridLayout(3, 3));
-        keyPad.setBorder(BorderFactory.createLineBorder(Color.darkGray, 50));
+        keyPad.setBorder(BorderFactory.createLineBorder(new Color(255, 157, 203), 25));
 
 
         //Adds button to keypad
@@ -77,9 +75,9 @@ public class SudokuGUI extends JFrame {
 
                     //Creates a pattern for easier reading
                     if (col == 0 && row != 1 || col == 2 && row != 1 || col == 1 && row == 1) {
-                        Tile.color = Color.GRAY;
+                        Tile.color = new Color(255, 157, 193);
                     } else {
-                        Tile.color = Color.LIGHT_GRAY;
+                        Tile.color = new Color(255, 97, 108);
                     }
 
                     //Adds button, sets its value

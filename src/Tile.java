@@ -43,10 +43,10 @@ public class Tile extends JButton {
 
         setText(String.valueOf(value));//Shows value on button
         //tile style
-        setBorder(BorderFactory.createLineBorder(Color.darkGray));
+        setBorder(BorderFactory.createLineBorder(Color.black));
         setBackground(color);
         setForeground(Color.black);
-        setFont(new Font("Inter", Font.PLAIN, 30));
+        setFont(new Font("Retro Gaming", Font.PLAIN, 40));
 
         //Sets button to blank if value isn't shown
         if (!isShown) {

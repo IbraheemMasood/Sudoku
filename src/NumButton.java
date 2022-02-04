@@ -15,10 +15,10 @@ public class NumButton extends JButton {
     public NumButton() {
         //Num Button Style
         setText(String.valueOf(value));
-        setBorder(BorderFactory.createLineBorder(gray));
-        setBackground(darkGray);
-        setForeground(WHITE);
-        setFont(new Font("Inter", Font.BOLD, 40)); //Remember, no comic sans
+        setBorder(BorderFactory.createLineBorder(BLACK));
+        setBackground(new Color(250, 97, 108));
+        setForeground(black);
+        setFont(new Font("Retro Gaming", Font.PLAIN, 60)); //Remember, no comic sans
 
         //allows the tracking of user input
         addActionListener(new Handler());
