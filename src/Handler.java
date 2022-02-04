@@ -20,18 +20,32 @@ public class Handler implements ActionListener {
      */
     public static long startTime = System.currentTimeMillis();
 
+    /**
+     * Handles mouse actions
+     */
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent event) {
 
         //Stores the number you clicked from
-        if (e.getSource() instanceof NumButton numpad) {
-            Main.gameGUI.currentNum = Integer.parseInt(numpad.getText());
+        if (event.getSource() instanceof NumButton numpad) {
+            for (int col = 0; col < 3; col++) {
+                //Resets past keypad button when new one is pressed
+                for (int row = 0; row < 3; row++) {
+                    SudokuGUI.keyArray[col][row].setBackground(new Color(255, 57, 108));
+                    SudokuGUI.keyArray[col][row].setForeground(Color.black);
+                }
+                //Shows what keypad button is currently pressed
+                Main.game.currentNum = Integer.parseInt(numpad.getText());
+                numpad.setBackground(new Color(50, 30, 130));
+                numpad.setForeground(Color.white);
 
+            }
         } else {
-            Tile tile = (Tile) e.getSource(); //Checks what button was clicked
-            if (!tile.isShown && Main.gameGUI.currentNum != 0) {
-                tile.setText(String.valueOf(Main.gameGUI.currentNum));
-                tile.showing = Main.gameGUI.currentNum;
+            Tile tile = (Tile) event.getSource(); //Checks what button was clicked
+            if (!tile.isShown && Main.game.currentNum != 0) {
+
+                tile.setText(String.valueOf(Main.game.currentNum));
+                tile.showing = Main.game.currentNum;
                 tile.setForeground(new Color(50, 30, 130));
             }
 
@@ -67,9 +81,10 @@ public class Handler implements ActionListener {
                     ex.printStackTrace();
                 }
 
-                //Creates JLabel with image
+                //Creates JLabels with images
                 assert winImageL != null;
                 JLabel winComponent1 = new JLabel(new ImageIcon(winImageL));
+
                 assert winImageR != null;
                 JLabel winComponent2 = new JLabel(new ImageIcon(winImageR));
 
@@ -78,7 +93,7 @@ public class Handler implements ActionListener {
                     for (int row = 0; row < SudokuGUI.buttonArray.length; row++) {
                         for (int col = 0; col < SudokuGUI.buttonArray.length; col++) {
                             tile = SudokuGUI.buttonArray[row][col];
-                            Color background = new Color(250, 30 + col * 20, 30 + row * 20);
+                            Color background = new Color(i * 50, 30 + col * 20, 30 + row * 20);
                             tile.setBackground(background);
                             tile.setBorder(BorderFactory.createLineBorder(background));
                             //Force renders before sleep to allow for delay
@@ -86,7 +101,7 @@ public class Handler implements ActionListener {
 
                             //Sleeps for 4milliseconds to create animated effect
                             try {
-                                TimeUnit.MILLISECONDS.sleep(4);
+                                TimeUnit.MILLISECONDS.sleep(3);
                             } catch (InterruptedException ex) {
                                 ex.printStackTrace();
 
@@ -94,16 +109,26 @@ public class Handler implements ActionListener {
 
                             tile = SudokuGUI.buttonArray[col][row];
                             tile.setBackground(background);
+                            tile.setBorder(BorderFactory.createLineBorder(background));
                             tile.paintImmediately(1, 1, tile.getWidth(), tile.getHeight());
 
                         }
                     }
                 }
-                //Runs method to generate win-screen
+
+
                 long endTime = System.currentTimeMillis();
+
+                try {
+                    TimeUnit.MILLISECONDS.sleep(500);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                //Gets time it took to win
                 String elapsedMin = String.valueOf(((endTime - startTime) / 1000) / 60);
                 String elapsedSec = String.valueOf(((endTime - startTime) / 1000) % 60);
-                Main.gameGUI.WinScreen(winComponent1, winComponent2, elapsedMin, elapsedSec);
+                //Runs method to generate win-screen
+                Main.game.WinScreen(winComponent1, winComponent2, elapsedMin, elapsedSec);
 
 
             }

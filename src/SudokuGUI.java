@@ -11,9 +11,9 @@ import java.lang.Math;
 public class SudokuGUI extends JFrame {
     public static JPanel sudBoard = new JPanel();
     public static Tile[][] buttonArray = new Tile[9][9];
-    public static NumButton[][] keyArray = new NumButton[9][9];
+    public static NumButton[][] keyArray = new NumButton[3][3];
     public static JPanel keyPad = new JPanel();
-    int currentNum = 0;//Tracks users current number
+    int currentNum = 0; //Tracks users current number
 
     /**
      * Helper function to generate a win-screen
@@ -49,7 +49,7 @@ public class SudokuGUI extends JFrame {
 
         //Generates Keypad
         keyPad.setLayout(new GridLayout(3, 3));
-        keyPad.setBorder(BorderFactory.createLineBorder(new Color(255, 157, 203), 25));
+        keyPad.setBorder(BorderFactory.createLineBorder(new Color(255, 57, 53), 25));
 
 
         //Adds button to keypad
@@ -64,6 +64,7 @@ public class SudokuGUI extends JFrame {
             }
 
         }
+
         //generates buttons
         for (int row = 0; row < (int) Math.sqrt(size); row++) {
 

@@ -15,8 +15,8 @@ public class NumButton extends JButton {
     public NumButton() {
         //Num Button Style
         setText(String.valueOf(value));
-        setBorder(BorderFactory.createLineBorder(BLACK));
-        setBackground(new Color(250, 97, 108));
+        setBorder(BorderFactory.createLineBorder(new Color(65, 67, 68)));
+        setBackground(new Color(255, 57, 108));
         setForeground(black);
         setFont(new Font("Retro Gaming", Font.PLAIN, 60)); //Remember, no comic sans
 

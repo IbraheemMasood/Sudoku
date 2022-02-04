@@ -43,7 +43,7 @@ public class Tile extends JButton {
 
         setText(String.valueOf(value));//Shows value on button
         //tile style
-        setBorder(BorderFactory.createLineBorder(Color.black));
+        setBorder(BorderFactory.createLineBorder(new Color(65, 67, 68)));
         setBackground(color);
         setForeground(Color.black);
         setFont(new Font("Retro Gaming", Font.PLAIN, 40));
